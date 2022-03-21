@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "node -r dotenv/config app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/9d4/inothing-api/issues"
   },
-  "homepage": "https://github.com/9d4/inothing-api#readme"
+  "homepage": "https://github.com/9d4/inothing-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
 }
