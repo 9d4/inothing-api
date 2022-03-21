@@ -1,0 +1,19 @@
+{
+  "name": "inothing-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9d4/inothing-api.git"
+  },
+  "author": "Dimas Ananda",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/9d4/inothing-api/issues"
+  },
+  "homepage": "https://github.com/9d4/inothing-api#readme"
+}
