@@ -7,22 +7,8 @@ const schema = Joi.object({
         .required(),
     username: Joi.string()
         .regex(/^[a-zA-Z0-9\-\_]+$/)
-        .required()
-        .custom((value, helper) => {
-            if (User.exists({ username: value }).exec()) {
-                throw new Error("Username already taken");
-            }
-            return value;
-        }),
-    email: Joi.string()
-        .email()
-        .required()
-        .custom((value, helper) => {
-            if (User.exists({ email: value }).exec()) {
-                throw new Error("Email already registered");
-            }
-            return value;
-        }),
+        .required(),
+    email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
 }).options({
     abortEarly: false,

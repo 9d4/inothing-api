@@ -5,4 +5,10 @@ module.exports = {
             return result;
         }, {});
     },
+    formatMongoDuplicateError(error) {
+        return {
+            username: error.keyValue.username ? "Username already taken" : undefined,
+            email: error.keyValue.email ? "Email already registered" : undefined,
+        };
+    },
 };
