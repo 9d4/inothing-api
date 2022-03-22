@@ -17,18 +17,18 @@ module.exports.login = async (req, res) => {
 
         const user = await User.login(username || email, password);
 
-        const payload = {
-            _id: user.id,
-            fullname: user.fullname,
-            username: user.username,
-            email: user.email,
-        };
+        const payload = { user: user._id };
         const token = jwt.sign(payload, secret, {
             expiresIn: 24 * 60 * 60,
         });
 
         res.status(201).json({
-            user: payload,
+            user: {
+                _id: user.id,
+                fullname: user.fullname,
+                username: user.username,
+                email: user.email,
+            },
             token,
         });
     } catch (err) {
