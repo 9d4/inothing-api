@@ -1,4 +1,5 @@
 const User = require("../user/user.model.js");
+const userValidator = require("../user/user.validator");
 
 /**
  * @param {import('express').Request} req
@@ -15,9 +16,14 @@ module.exports.logout = (req, res) => {};
  * @param {import('express').Response} res
  */
 module.exports.register = async (req, res) => {
-    const { fullname, username, email, password } = req.body;
+    const { value, error } = userValidator.validate(req.body);
 
-    const user = await User.create({ fullname, username, email, password });
+    if (error)
+        return res.status(422).json({
+            errors: error.details.map((detail) => detail.message),
+        });
+
+    const user = await User.create(value);
 
     return res.status(201).json({
         user: {
