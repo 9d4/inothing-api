@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = process.env.PORT || 9100;
@@ -15,6 +16,7 @@ app.use((req, res, next) => {
 
     next();
 });
+app.use(cookieParser());
 
 app.use(require("./routes/auth.js"));
 app.use(require("./routes/home"));

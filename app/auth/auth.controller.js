@@ -22,6 +22,7 @@ module.exports.login = async (req, res) => {
             expiresIn: 24 * 60 * 60,
         });
 
+        res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000 });
         res.status(201).json({
             user: {
                 _id: user.id,
@@ -40,6 +41,7 @@ module.exports.login = async (req, res) => {
  * @param {import('express').Response} res
  */
 module.exports.logout = (req, res) => {
+    res.clearCookie();
     res.sendStatus(204);
 };
 /**
