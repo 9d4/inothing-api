@@ -6,6 +6,15 @@ const port = process.env.PORT || 9100;
 const mongouri = process.env.MONGO_URI;
 
 app.use(express.json());
+app.use((req, res, next) => {
+    if (
+        req.header("Content-Type") &&
+        req.header("Content-Type") != "application/json"
+    )
+        return res.sendStatus(415);
+
+    next();
+});
 
 app.use(require("./routes/auth.js"));
 app.use(require("./routes/home"));

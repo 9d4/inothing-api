@@ -42,5 +42,9 @@ module.exports.register = async (req, res) => {
             return res.status(409).json({
                 error: formatMongoDuplicateError(err),
             });
+
+        return res.status(400).json({
+            error: "Unkwon error",
+        });
     }
 };
