@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/9d4/inothing-api#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "mongoose": "^6.2.7"
   },
