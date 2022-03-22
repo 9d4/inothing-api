@@ -1,9 +1,11 @@
+const jwt = require("jsonwebtoken");
 const User = require("../user/user.model");
 const userValidator = require("../user/user.validator");
 const {
     formatValidationError,
     formatMongoDuplicateError,
 } = require("../shared/helpers");
+const secret = process.env.JWT_SECRET;
 
 /**
  * @param {import('express').Request} req
@@ -15,13 +17,19 @@ module.exports.login = async (req, res) => {
 
         const user = await User.login(username || email, password);
 
+        const payload = {
+            _id: user.id,
+            fullname: user.fullname,
+            username: user.username,
+            email: user.email,
+        };
+        const token = jwt.sign(payload, secret, {
+            expiresIn: 24 * 60 * 60,
+        });
+
         res.status(201).json({
-            user: {
-                _id: user.id,
-                fullname: user.fullname,
-                username: user.username,
-                email: user.email,
-            },
+            user: payload,
+            token,
         });
     } catch (err) {
         res.status(400).json({ err });
@@ -31,7 +39,9 @@ module.exports.login = async (req, res) => {
  * @param {import('express').Request} req
  * @param {import('express').Response} res
  */
-module.exports.logout = (req, res) => {};
+module.exports.logout = (req, res) => {
+    res.sendStatus(204);
+};
 /**
  * @param {import('express').Request} req
  * @param {import('express').Response} res
