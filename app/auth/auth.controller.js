@@ -1,5 +1,6 @@
-const User = require("../user/user.model.js");
+const User = require("../user/user.model");
 const userValidator = require("../user/user.validator");
+const { formatValidationError } = require("../shared/helpers");
 
 /**
  * @param {import('express').Request} req
@@ -20,7 +21,7 @@ module.exports.register = async (req, res) => {
 
     if (error)
         return res.status(422).json({
-            errors: error.details.map((detail) => detail.message),
+            error: formatValidationError(error),
         });
 
     const user = await User.create(value);
