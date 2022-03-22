@@ -29,5 +29,16 @@ userSchema.pre("save", async function (next) {
 
     next();
 });
+userSchema.static("login", async function (usernameOrEmail, password) {
+    const user = await this.findOne({
+        $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+    });
+    if (!user) throw { usernameOrEmail: "Username or email not found" };
+
+    const auth = await bcrypt.compare(password || "", user.password);
+    if (!auth) throw { password: "Incorrect password" };
+
+    return user;
+});
 
 module.exports = mongoose.model("User", userSchema);
