@@ -21,4 +21,18 @@ module.exports = {
 
         next();
     },
+
+    /**
+     * @param {import('express').Request} req
+     * @param {import('express').Response} res
+     * @param {import('express').NextFunction} next
+     */
+    async authenticated(req, res, next) {
+        if (req.user != null)
+            return next();
+
+        res.json({
+            error: "Unauthenticated!"
+        });
+    }
 };
