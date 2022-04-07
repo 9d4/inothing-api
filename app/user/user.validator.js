@@ -3,7 +3,7 @@ const User = require("./user.model");
 
 const schema = Joi.object({
     fullname: Joi.string()
-        .pattern(/^[a-zA-Z0-9]+$/)
+        .pattern(/^[a-zA-Z0-9 ]+$/)
         .required(),
     username: Joi.string()
         .regex(/^[a-zA-Z0-9\-\_]+$/)
