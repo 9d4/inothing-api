@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const thingSchema = require("../thing/thing.schema");
 
 const userSchema = new mongoose.Schema({
     fullname: {
@@ -21,6 +22,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 8,
     },
+    things: [thingSchema],
 });
 
 userSchema.pre("save", async function (next) {
