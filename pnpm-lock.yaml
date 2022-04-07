@@ -9,6 +9,7 @@ specifiers:
   joi: ^17.6.0
   jsonwebtoken: ^8.5.1
   mongoose: ^6.2.7
+  nanoid: ^3.3.2
 
 dependencies:
   bcrypt: 5.0.1
@@ -17,6 +18,7 @@ dependencies:
   joi: 17.6.0
   jsonwebtoken: 8.5.1
   mongoose: 6.2.7
+  nanoid: 3.3.2
 
 devDependencies:
   '@types/express': 4.17.13
@@ -730,6 +732,12 @@ packages:
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+    dev: false
+
+  /nanoid/3.3.2:
+    resolution: {integrity: sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
     dev: false
 
   /negotiator/0.6.3:
