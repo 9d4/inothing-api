@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const { getUser } = require("./app/shared/middlewares");
 
-const app = express();
+const app = module.exports = express();
 const port = process.env.PORT || 9100;
 const mongouri = process.env.MONGO_URI;
 
@@ -24,8 +24,10 @@ app.use(require("./routes/auth"));
 app.use(require("./routes/home"));
 app.use((req, res) => res.sendStatus(404));
 
-mongoose.connect(mongouri).then(() => {
-    app.listen(port, () => {
+const server = mongoose.connect(mongouri).then(() => {
+    return app.listen(port, () => {
         console.log("Listening at port", port);
     });
 });
+
+module.exports = {app, server};
