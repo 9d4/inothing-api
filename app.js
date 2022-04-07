@@ -20,9 +20,7 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 
 app.use(getUser);
-app.use(require("./routes/auth"));
-app.use(require("./routes/home"));
-app.use((req, res) => res.sendStatus(404));
+app.use(require("./routes/routes"));
 
 const server = mongoose.connect(mongouri).then(() => {
     return app.listen(port, () => {
