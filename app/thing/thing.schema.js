@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+const { generateThingId } = require("../shared/helpers");
 
-module.exports = new mongoose.Schema({
+const thingSchema = module.exports = new mongoose.Schema({
     thingId: {
         type: String,
-        required: true,
     },
     name: {
         type: String,
@@ -11,4 +11,9 @@ module.exports = new mongoose.Schema({
     },
 }, {
     timestamps: true,
+});
+
+thingSchema.pre("save", async function (next) {
+    // generate id then insert to thingId field
+    this.thingId = generateThingId();
 });
