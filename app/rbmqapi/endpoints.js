@@ -1,32 +1,32 @@
-export const ApiOverview = "/api/overview";
+module.exports.ApiOverview = "/api/overview";
 
-export const ApiCluster_name = "/api/cluster-name";
+module.exports.ApiCluster_name = "/api/cluster-name";
 
-export const ApiNodes = "/api/nodes";
+module.exports.ApiNodes = "/api/nodes";
 
 // /api/nodes/<name>
-export const ApiNodesName = "/api/nodes/%s";
+module.exports.ApiNodesName = "/api/nodes/%s";
 
-export const ApiExtensions = "/api/extensions";
+module.exports.ApiExtensions = "/api/extensions";
 
-export const ApiDefinitions = "/api/definitions";
+module.exports.ApiDefinitions = "/api/definitions";
 
 // /api/definitions/<vhost>
-export const ApiDefinitionsVhost = "/api/definitions/%s";
+module.exports.ApiDefinitionsVhost = "/api/definitions/%s";
 
-export const ApiWhoami = "/api/whoami";
+module.exports.ApiWhoami = "/api/whoami";
 
 // ------------------------------------------------------
 // AUTHS
 // ------------------------------------------------------
 
-export const ApiAuth = "/api/auth";
+module.exports.ApiAuth = "/api/auth";
 
 // /api/auth/attempts/<node>
-export const ApiAuthAttemptsNode = "/api/auth/attempts/%s";
+module.exports.ApiAuthAttemptsNode = "/api/auth/attempts/%s";
 
 // /api/auth/attempts/<node>/source
-export const ApiAuthAttemptsNodeSource = "/api/auth/%s/source";
+module.exports.ApiAuthAttemptsNodeSource = "/api/auth/%s/source";
 
 // ------------------------------------------------------
 
@@ -34,45 +34,45 @@ export const ApiAuthAttemptsNodeSource = "/api/auth/%s/source";
 // BINDINGS
 // ------------------------------------------------------
 
-export const ApiBindings = "/api/bindings";
+module.exports.ApiBindings = "/api/bindings";
 
 // /api/bindings/<vhost>
-export const ApiBindingsVhost = "/api/bindings/%s";
+module.exports.ApiBindingsVhost = "/api/bindings/%s";
 
 // /api/bindings/<vhost>/e/<exchange>/q/<queue>
-export const ApiBindingsVhostEExchangeQQueue = "/api/bindings/%s/e/%s/q/%s";
+module.exports.ApiBindingsVhostEExchangeQQueue = "/api/bindings/%s/e/%s/q/%s";
 
 // /api/bindings/<vhost>/e/<exchange>/q/<queue>/<props>
-export const ApiBindingsVhostEExchangeQQueueProps = "/api/bindings/%s/e/%s/q/%s/%s";
+module.exports.ApiBindingsVhostEExchangeQQueueProps = "/api/bindings/%s/e/%s/q/%s/%s";
 
 // /api/bindings/<vhost>/e/<source>/e/<destination>
-export const ApiBindingsVhostESourceEDestination = "/api/bindings/%s/e/%s/e/%s";
+module.exports.ApiBindingsVhostESourceEDestination = "/api/bindings/%s/e/%s/e/%s";
 
 // /api/bindings/<vhost>/e/<source>/e/<destination>/<props>
-export const ApiBindingsVhostESourceEDestinationProps = "/api/bindings/%s/e/%s/e/%s/%s";
+module.exports.ApiBindingsVhostESourceEDestinationProps = "/api/bindings/%s/e/%s/e/%s/%s";
 
 // ------------------------------------------------------
 
 // ------------------------------------------------------
 // CONNECTIONS
 // ------------------------------------------------------
-export const ApiConnections = "/api/connections";
+module.exports.ApiConnections = "/api/connections";
 
 // /api/connections/<name>
-export const ApiConnectionsName = "/api/connections/%s";
+module.exports.ApiConnectionsName = "/api/connections/%s";
 
 // /api/connections/<name>/channels
-export const ApiConnectionsNameChannels = "/api/connections/%s/channels";
+module.exports.ApiConnectionsNameChannels = "/api/connections/%s/channels";
 
-export const ApiChannels = "/api/channels";
+module.exports.ApiChannels = "/api/channels";
 
 // /api/channels/<channel>
-export const ApiChannelsChannel = "/api/channels/%s";
+module.exports.ApiChannelsChannel = "/api/channels/%s";
 
-export const ApiConsumers = "/api/consumers";
+module.exports.ApiConsumers = "/api/consumers";
 
 // /api/consumers/<vhost>
-export const ApiConsumersVhost = "/api/consumers/%s";
+module.exports.ApiConsumersVhost = "/api/consumers/%s";
 
 // ------------------------------------------------------
 
@@ -80,22 +80,22 @@ export const ApiConsumersVhost = "/api/consumers/%s";
 // EXCHANGES
 // ------------------------------------------------------
 
-export const ApiExchanges = "/api/exchanges";
+module.exports.ApiExchanges = "/api/exchanges";
 
 // /api/exchanges/<vhost>
-export const ApiExchangesVhost = "/api/exchanges/%s";
+module.exports.ApiExchangesVhost = "/api/exchanges/%s";
 
 // /api/exchanges/<vhost>/<name>
-export const ApiExchangesVhostName = "/api/exchanges/%s/%s";
+module.exports.ApiExchangesVhostName = "/api/exchanges/%s/%s";
 
 // /api/exchanges/<vhost>/<name>/bindings/source
-export const ApiExchangesVhostNameBindingsSource = "/api/exchanges/%s/%s/bindings/source";
+module.exports.ApiExchangesVhostNameBindingsSource = "/api/exchanges/%s/%s/bindings/source";
 
 // /api/exchanges/<vhost>/<name>/bindings/destination
-export const ApiExchangesVhostNameBindingsDestination = "/api/exchanges/%s/%s/bindings/destination";
+module.exports.ApiExchangesVhostNameBindingsDestination = "/api/exchanges/%s/%s/bindings/destination";
 
 // /api/exchanges/<vhost>/<name>/publish
-export const ApiExchangesVhostNamePublish = "/api/exchanges/%s/%s/publish";
+module.exports.ApiExchangesVhostNamePublish = "/api/exchanges/%s/%s/publish";
 
 // ------------------------------------------------------
 
@@ -103,10 +103,10 @@ export const ApiExchangesVhostNamePublish = "/api/exchanges/%s/%s/publish";
 // FEDERATIONS
 // ------------------------------------------------------
 
-export const ApiFederation_links = "/api/federation-links";
+module.exports.ApiFederation_links = "/api/federation-links";
 
 // /api/federation-links/<vhost>
-export const ApiFederation_linksVhost = "/api/federation-links/%s";
+module.exports.ApiFederation_linksVhost = "/api/federation-links/%s";
 
 // ------------------------------------------------------
 
@@ -115,26 +115,26 @@ export const ApiFederation_linksVhost = "/api/federation-links/%s";
 // ------------------------------------------------------
 
 // /api/aliveness-test/<vhost>
-export const ApiAliveness_testVhost = "/api/aliveness-test/%s";
+module.exports.ApiAliveness_testVhost = "/api/aliveness-test/%s";
 
-export const ApiHealthChecksAlarms = "/api/health/checks/alarms";
+module.exports.ApiHealthChecksAlarms = "/api/health/checks/alarms";
 
-export const ApiHealthChecksLocal_alarms = "/api/health/checks/local-alarms";
+module.exports.ApiHealthChecksLocal_alarms = "/api/health/checks/local-alarms";
 
 // /api/health/checks/certificate-expiration/<within>/<unit>
-export const ApiHealthChecksCertificate_expirationWithinUnit = "/api/health/checks/certificate-expiration/%s/%s";
+module.exports.ApiHealthChecksCertificate_expirationWithinUnit = "/api/health/checks/certificate-expiration/%s/%s";
 
 // /api/health/checks/port-listener/<port>
-export const ApiHealthChecksPort_listenerPort = "/api/health/checks/port-listener/%s";
+module.exports.ApiHealthChecksPort_listenerPort = "/api/health/checks/port-listener/%s";
 
 // /api/health/checks/protocol-listener/<protocol>
-export const ApiHealthChecksProtocol_listenerProtocol = "/api/health/checks/protocol-listener/%s";
+module.exports.ApiHealthChecksProtocol_listenerProtocol = "/api/health/checks/protocol-listener/%s";
 
-export const ApiHealthChecksVirtual_hosts = "/api/health/checks/virtual-hosts";
+module.exports.ApiHealthChecksVirtual_hosts = "/api/health/checks/virtual-hosts";
 
-export const ApiHealthChecksNode_is_mirror_sync_critical = "/api/health/checks/node-is-mirror-sync-critical";
+module.exports.ApiHealthChecksNode_is_mirror_sync_critical = "/api/health/checks/node-is-mirror-sync-critical";
 
-export const ApiHealthChecksNode_is_quorum_critical = "/api/health/checks/node-is-quorum-critical";
+module.exports.ApiHealthChecksNode_is_quorum_critical = "/api/health/checks/node-is-quorum-critical";
 
 // ------------------------------------------------------
 
@@ -142,21 +142,21 @@ export const ApiHealthChecksNode_is_quorum_critical = "/api/health/checks/node-i
 // PARAMETERS
 // ------------------------------------------------------
 
-export const ApiParameters = "/api/parameters";
+module.exports.ApiParameters = "/api/parameters";
 
 // /api/parameters/<component>
-export const ApiParametersComponent = "/api/parameters/%s";
+module.exports.ApiParametersComponent = "/api/parameters/%s";
 
 // /api/parameters/<component>/<vhost>
-export const ApiParametersComponentVhost = "/api/parameters/%s/%s";
+module.exports.ApiParametersComponentVhost = "/api/parameters/%s/%s";
 
 // /api/parameters/<component>/<vhost>/<name>
-export const ApiParametersComponentVhostName = "/api/parameters/%s/%s/%s";
+module.exports.ApiParametersComponentVhostName = "/api/parameters/%s/%s/%s";
 
-export const ApiGlobal_parameters = "/api/global-parameters";
+module.exports.ApiGlobal_parameters = "/api/global-parameters";
 
 // /api/global-parameters/<name>
-export const ApiGlobal_parametersName = "/api/global-parameters/%s";
+module.exports.ApiGlobal_parametersName = "/api/global-parameters/%s";
 
 // ------------------------------------------------------
 
@@ -164,15 +164,15 @@ export const ApiGlobal_parametersName = "/api/global-parameters/%s";
 // PERMISSIONS
 // ------------------------------------------------------
 
-export const ApiPermissions = "/api/permissions";
+module.exports.ApiPermissions = "/api/permissions";
 
 // /api/permissions/<vhost>/<user>
-export const ApiPermissionsVhostUser = "/api/permissions/%s/%s";
+module.exports.ApiPermissionsVhostUser = "/api/permissions/%s/%s";
 
-export const ApiTopic_permissions = "/api/topic-permissions";
+module.exports.ApiTopic_permissions = "/api/topic-permissions";
 
 // /api/topic-permissions/<vhost>/<user>
-export const ApiTopic_permissionsVhostUser = "/api/topic-permissions/%s/%s";
+module.exports.ApiTopic_permissionsVhostUser = "/api/topic-permissions/%s/%s";
 
 // ------------------------------------------------------
 
@@ -180,20 +180,20 @@ export const ApiTopic_permissionsVhostUser = "/api/topic-permissions/%s/%s";
 // POLICIES
 // ------------------------------------------------------
 
-export const ApiPolicies = "/api/policies";
+module.exports.ApiPolicies = "/api/policies";
 
 // /api/policies/<vhost>
-export const ApiPoliciesVhost = "/api/policies/%s";
+module.exports.ApiPoliciesVhost = "/api/policies/%s";
 
 // /api/policies/<vhost>/<name>
-export const ApiPoliciesVhostName = "/api/policies/%s/%s";
-export const ApiOperator_policies = "/api/operator-policies";
+module.exports.ApiPoliciesVhostName = "/api/policies/%s/%s";
+module.exports.ApiOperator_policies = "/api/operator-policies";
 
 // /api/operator-policies/<vhost>
-export const ApiOperator_policiesVhost = "/api/operator-policies/%s";
+module.exports.ApiOperator_policiesVhost = "/api/operator-policies/%s";
 
 // /api/operator-policies/<vhost>/<name>
-export const ApiOperator_policiesVhostName = "/api/operator-policies/%s/%s";
+module.exports.ApiOperator_policiesVhostName = "/api/operator-policies/%s/%s";
 
 // ------------------------------------------------------
 
@@ -201,27 +201,27 @@ export const ApiOperator_policiesVhostName = "/api/operator-policies/%s/%s";
 // QUEUES
 // ------------------------------------------------------
 
-export const ApiQueues = "/api/queues";
+module.exports.ApiQueues = "/api/queues";
 
 // /api/queues/<vhost>/<name>
-export const ApiQueuesVhost = "/api/queues/%s";
+module.exports.ApiQueuesVhost = "/api/queues/%s";
 
 // /api/queues/<vhost>/<name>
-export const ApiQueuesVhostName = "/api/queues/%s/%s";
+module.exports.ApiQueuesVhostName = "/api/queues/%s/%s";
 
 // /api/queues/<vhost>/<name>/bindings
-export const ApiQueuesVhostNameBindings = "/api/queues/%s/%s/bindings";
+module.exports.ApiQueuesVhostNameBindings = "/api/queues/%s/%s/bindings";
 
 // /api/queues/<vhost>/<name>/contents
-export const ApiQueuesVhostNameContents = "/api/queues/%s/%s/contents";
+module.exports.ApiQueuesVhostNameContents = "/api/queues/%s/%s/contents";
 
 // /api/queues/<vhost>/<name>/actions
-export const ApiQueuesVhostNameActions = "/api/queues/%s/%s/actions";
+module.exports.ApiQueuesVhostNameActions = "/api/queues/%s/%s/actions";
 
 // /api/queues/<vhost>/<name>/get
-export const ApiQueuesVhostNameGet = "/api/queues/%s/%s/get";
+module.exports.ApiQueuesVhostNameGet = "/api/queues/%s/%s/get";
 
-export const ApiRebalanceQueues = "/api/rebalance/queues";
+module.exports.ApiRebalanceQueues = "/api/rebalance/queues";
 
 // ------------------------------------------------------
 
@@ -229,32 +229,32 @@ export const ApiRebalanceQueues = "/api/rebalance/queues";
 // USERS
 // ------------------------------------------------------
 
-export const ApiUsers = "/api/users";
-export const ApiUsersWithout_permissions = "/api/users/without-permissions";
-export const ApiUsersBulk_delete = "/api/users/bulk-delete";
+module.exports.ApiUsers = "/api/users";
+module.exports.ApiUsersWithout_permissions = "/api/users/without-permissions";
+module.exports.ApiUsersBulk_delete = "/api/users/bulk-delete";
 
 // /api/users/<name>
-export const ApiUsersName = "/api/users/%s";
+module.exports.ApiUsersName = "/api/users/%s";
 
 // /api/users/<user>/permissions
-export const ApiUsersUserPermissions = "/api/users/%s/permissions";
+module.exports.ApiUsersUserPermissions = "/api/users/%s/permissions";
 
 // ------------------------------------------------------
 
 // /api/users/<user>/topic-permissions
-export const ApiUsersUserTopic_permissions = "/api/users/%s/topic-permissions";
+module.exports.ApiUsersUserTopic_permissions = "/api/users/%s/topic-permissions";
 
 // ------------------------------------------------------
 // USERS LIMITS
 // ------------------------------------------------------
 
-export const ApiUser_limits = "/api/user-limits";
+module.exports.ApiUser_limits = "/api/user-limits";
 
 // /api/user-limits/<user>
-export const ApiUser_limitsUser = "/api/user-limits/%s";
+module.exports.ApiUser_limitsUser = "/api/user-limits/%s";
 
 // /api/user-limits/<user>/<name>
-export const ApiUser_limitsUserName = "/api/user-limits/%s/%s";
+module.exports.ApiUser_limitsUserName = "/api/user-limits/%s/%s";
 
 // ------------------------------------------------------
 
@@ -262,32 +262,32 @@ export const ApiUser_limitsUserName = "/api/user-limits/%s/%s";
 // VHOSTS
 // ------------------------------------------------------
 
-export const ApiVhosts = "/api/vhosts";
+module.exports.ApiVhosts = "/api/vhosts";
 
 // /api/vhosts/<name>
-export const ApiVhostsName = "/api/vhosts/%s";
+module.exports.ApiVhostsName = "/api/vhosts/%s";
 
 // /api/vhosts/<vhost>/channels
-export const ApiVhostsVhostChannels = "/api/vhosts/%s/channels";
+module.exports.ApiVhostsVhostChannels = "/api/vhosts/%s/channels";
 
 // /api/vhosts/<vhost>/connections
-export const ApiVhostsVhostConnections = "/api/vhosts/%s/connections";
+module.exports.ApiVhostsVhostConnections = "/api/vhosts/%s/connections";
 
 // /api/vhosts/<name>/permissions
-export const ApiVhostsNamePermissions = "/api/vhosts/%s/permissions";
+module.exports.ApiVhostsNamePermissions = "/api/vhosts/%s/permissions";
 
 // /api/vhosts/<name>/start/<node>
-export const ApiVhostsNameStartNode = "/api/vhosts/%s/start/%s";
+module.exports.ApiVhostsNameStartNode = "/api/vhosts/%s/start/%s";
 
 // /api/vhosts/<name>/topic-permissions
-export const ApiVhostsNameTopic_permissions = "/api/vhosts/%s/topic-permissions";
+module.exports.ApiVhostsNameTopic_permissions = "/api/vhosts/%s/topic-permissions";
 
-export const ApiVhost_limits = "/api/vhost-limits";
+module.exports.ApiVhost_limits = "/api/vhost-limits";
 
 // /api/vhost-limits/<vhost>
-export const ApiVhost_limitsVhost = "/api/vhost-limits/%s";
+module.exports.ApiVhost_limitsVhost = "/api/vhost-limits/%s";
 
 // /api/vhost-limits/<vhost>/<name>
-export const ApiVhost_limitsVhostName = "/api/vhost-limits/%s/%s";
+module.exports.ApiVhost_limitsVhostName = "/api/vhost-limits/%s/%s";
 
 // ------------------------------------------------------
