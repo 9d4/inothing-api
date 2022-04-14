@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { nanoid } = require("nanoid");
 const thingSchema = require("../thing/thing.schema");
 
 const userSchema = new mongoose.Schema({
@@ -22,12 +23,19 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 8,
     },
+    rmqpassword: {
+        type: String,
+    },
     things: [thingSchema],
 });
 
 userSchema.pre("save", async function (next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
+
+    // generate nanoid for RMQ password
+    const rmqpass = nanoid();
+    this.rmqpassword = rmqpass;
 
     next();
 });

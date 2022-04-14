@@ -6,6 +6,7 @@ const {
     formatMongoDuplicateError,
 } = require("../shared/helpers");
 const secret = process.env.JWT_SECRET;
+const { newUser: rmqNewUser } = require("../rbmqapi/rbmqapi");
 
 /**
  * @param {import('express').Request} req
@@ -56,6 +57,17 @@ module.exports.register = async (req, res) => {
 
         const user = await User.create(value);
 
+        // create user in RabbitMQ
+        const rmqRes = await rmqNewUser(user.username, user.rmqpassword);
+
+        if (rmqRes.status !== 201) {
+            // destroy user immediately
+            await User.findByIdAndDelete(user.id);
+
+            // throw unknown error
+            throw new Error("Unknown error");
+        }
+
         res.status(201).json({
             user: {
                 _id: user.id,
@@ -76,7 +88,7 @@ module.exports.register = async (req, res) => {
             });
 
         res.status(400).json({
-            error: "Unkwon error",
+            error: "Unknown error",
         });
     }
 };
