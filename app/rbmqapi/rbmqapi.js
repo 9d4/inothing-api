@@ -4,7 +4,13 @@
 
 const axios = require("axios");
 const { sprintf } = require("sprintf-js");
-const { ApiUsersName } = require("./endpoints");
+const { ApiUsersName, ApiPermissions, ApiPermissionsVhostUser } = require("./endpoints");
+
+const AUTH = {
+    username: process.env.RABBITMQ_USER,
+    password: process.env.RABBITMQ_PASS,
+};
+const VHOST = process.env.RABBITMQ_VHOST;
 
 /** get full url to rabbitmq api
  *  @param {String} path
@@ -48,5 +54,34 @@ module.exports.newUser = async (username, password) => {
                 'Content-Type': 'application/json',
             },
         }
+    );
+}
+
+/**
+ * Set user permission against vhost(s) in RabbitMQ
+ * set vhost to null or "" to set permission against default vhost 
+ * 
+ * @param {String} vhost
+ * @param {String} username 
+ * @param {Object} permission 
+ */
+module.exports.setUserPermission = async (vhost, username, permission) => {
+    vhost = encodeURIComponent(vhost || VHOST);
+    username = encodeURIComponent(username);
+
+    const url = await module.exports.getUrl(sprintf(ApiPermissionsVhostUser, vhost, username));
+
+    return axios.put(url,
+        {
+            configure: permission.configure,
+            write: permission.write,
+            read: permission.read,
+        },
+        {
+            auth: AUTH,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        },
     );
 }
