@@ -65,7 +65,7 @@ module.exports.newUser = async (username, password) => {
  * @param {String} username 
  * @param {Object} permission 
  */
-module.exports.setUserPermission = async (vhost, username, permission) => {
+module.exports.setVhostPermission = async (vhost, username, permission) => {
     vhost = encodeURIComponent(vhost || VHOST);
     username = encodeURIComponent(username);
 
