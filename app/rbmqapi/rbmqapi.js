@@ -34,8 +34,6 @@ module.exports.getUrlSync = function getUrlSync(path) {
 module.exports.newUser = async (username, password) => {
     const url = await module.exports.getUrl(sprintf(ApiUsersName, username));
 
-    console.log(url)
-
     return axios.put(url,
         {
             password: password,
