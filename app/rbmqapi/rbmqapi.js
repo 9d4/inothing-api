@@ -58,7 +58,7 @@ module.exports.newUser = async (username, password) => {
 }
 
 /**
- * Set user permission against vhost(s) in RabbitMQ
+ * Set user permission against vhost in RabbitMQ
  * set vhost to null or "" to set permission against default vhost 
  * 
  * @param {String} vhost
