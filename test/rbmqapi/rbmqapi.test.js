@@ -1,9 +1,8 @@
-const { newUser, setVhostPermission } = require("../../app/rbmqapi/rbmqapi");
+const { newUser, setVhostPermission, setTopicPermission } = require("../../app/rbmqapi/rbmqapi");
 
 describe("RabbitMQ API", () => {
     it("Creates new user on system", async () => {
         const res = await newUser("test", "test");
-        console.log(res)
     })
 
     it("Sets user permission on rabbitmq", async () => {
@@ -12,6 +11,13 @@ describe("RabbitMQ API", () => {
             write: ".*",
             read: ".*",
         })
-        console.log(res)
     });
+
+    it("Sets user topic permission on rabbitmq", async () => {
+        const res = await setTopicPermission("", "test", {
+            exchange: "amq.topic",
+            write: "^test.*",
+            read: "^test.*",
+        })
+    })
 });

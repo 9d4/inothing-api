@@ -4,7 +4,7 @@
 
 const axios = require("axios");
 const { sprintf } = require("sprintf-js");
-const { ApiUsersName, ApiPermissions, ApiPermissionsVhostUser } = require("./endpoints");
+const { ApiUsersName, ApiPermissionsVhostUser, ApiTopic_permissionsVhostUser } = require("./endpoints");
 
 const AUTH = {
     username: process.env.RABBITMQ_USER,
@@ -76,6 +76,35 @@ module.exports.setVhostPermission = async (vhost, username, permission) => {
             configure: permission.configure,
             write: permission.write,
             read: permission.read,
+        },
+        {
+            auth: AUTH,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        },
+    );
+}
+
+
+/**
+ * Set user topic permission against vhost in RabbitMQ
+ * set vhost to null or "" to set permission against default vhost
+ * @param {String} vhost
+ * @param {String} username
+ * @param {Object} topicPermission
+ */
+module.exports.setTopicPermission = async (vhost, username, topicPermission) => {
+    vhost = encodeURIComponent(vhost || VHOST);
+    username = encodeURIComponent(username);
+
+    const url = await module.exports.getUrl(sprintf(ApiTopic_permissionsVhostUser, vhost, username));
+
+    return axios.put(url,
+        {
+            exchange: topicPermission.exchange,
+            write: topicPermission.write,
+            read: topicPermission.read,
         },
         {
             auth: AUTH,
