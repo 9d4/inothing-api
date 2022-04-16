@@ -6,7 +6,7 @@ const {
     formatMongoDuplicateError,
 } = require("../shared/helpers");
 const secret = process.env.JWT_SECRET;
-const { newUser: rmqNewUser } = require("../rbmqapi/rbmqapi");
+const { newUser: rmqNewUser, setVhostPermission } = require("../rbmqapi/rbmqapi");
 
 /**
  * @param {import('express').Request} req
@@ -67,6 +67,9 @@ module.exports.register = async (req, res) => {
             // throw unknown error
             throw new Error("Unknown error");
         }
+
+        // allow rmq user permission against default vhost
+        await setVhostPermission(null, user.username, { configure: ".*", read: ".*", write: ".*" });
 
         res.status(201).json({
             user: {
