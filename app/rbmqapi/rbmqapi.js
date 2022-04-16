@@ -94,13 +94,20 @@ module.exports.setVhostPermission = async (vhost, username, permission) => {
     );
 }
 
+/**
+ * The Topic Permission
+ * @typedef {Object} TopicPermission
+ * @property {string} exchange
+ * @property {string} write
+ * @property {string} read
+ */
 
 /**
  * Set user topic permission against vhost in RabbitMQ
  * set vhost to null or "" to set permission against default vhost
  * @param {String} vhost
  * @param {String} username
- * @param {Object} topicPermission
+ * @param {TopicPermission} topicPermission
  */
 module.exports.setTopicPermission = async (vhost, username, topicPermission) => {
     vhost = encodeURIComponent(vhost || VHOST);
