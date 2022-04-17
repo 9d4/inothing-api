@@ -32,6 +32,31 @@ module.exports.get = async (req, res) => {
 }
 
 /**
+ * Get things
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ */
+module.exports.getAll = async (req, res) => {
+    try {
+        // get all things with objectId from req.user.things
+        const things = await thingModel.find({
+            _id: { $in: req.user.things },
+        });
+        
+        return res.status(200).json({
+            things: things.map(thing => ({
+                thingId: thing.thingId,
+                name: thing.name,
+            })),
+        });
+    } catch (err) {
+        res.status(400).json({
+            error: "Unkwon error",
+        });
+    }
+}
+
+/**
  * @param {import('express').Request} req
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
