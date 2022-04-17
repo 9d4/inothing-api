@@ -14,6 +14,10 @@ module.exports.create = async (req, res, next) => {
 
         const thing = await thingModel.create(value);
 
+        // add thing to current user
+        req.user.things.push(thing._id);
+        await req.user.save();
+
         return res.status(201).json({
             thing: {
                 thingId: thing.thingId,

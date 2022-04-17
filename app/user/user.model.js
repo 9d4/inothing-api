@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     rmqpassword: {
         type: String,
     },
-    things: [thingSchema],
+    things: [mongoose.ObjectId],
 });
 
 userSchema.pre("save", async function (next) {
