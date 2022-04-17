@@ -1,6 +1,35 @@
 const { formatValidationError } = require("../shared/helpers");
 const thingModel = require("./thing.model");
 const { createThingValidator } = require("./thing.validator");
+const { ThingError } = require("./thing.errors");
+
+/**
+ * Get thing based on thingId
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ */
+module.exports.get = async (req, res) => {
+    try {
+        const thing = await thingModel.findOne({ thingId: req.params.thingId });
+        if (!thing) throw new ThingError("Thing not found");
+
+        return res.status(200).json({
+            thing: {
+                thingId: thing.thingId,
+                name: thing.name,
+            }
+        });
+    } catch (err) {
+        if (err.name == "ThingError")
+            return res.status(404).json({
+                error: err.message,
+            });
+
+        res.status(400).json({
+            error: "Unkwon error",
+        });
+    }
+}
 
 /**
  * @param {import('express').Request} req
