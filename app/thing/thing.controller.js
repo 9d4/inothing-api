@@ -21,7 +21,6 @@ module.exports.create = async (req, res, next) => {
             }
         });
     } catch (err) {
-        console.log(err)
         if (err.name = "ValidationError") {
             return res.status(422).json(formatValidationError(err));
         }
