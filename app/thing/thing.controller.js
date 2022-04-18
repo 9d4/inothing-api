@@ -2,6 +2,17 @@ const { formatValidationError } = require("../shared/helpers");
 const thingModel = require("./thing.model");
 const { createThingValidator } = require("./thing.validator");
 const { ThingError } = require("./thing.errors");
+const { AuthError } = require("../auth/auth.errors");
+
+/**
+ * Check if thing belongs to user
+ * @param {import('express').Request} req
+ * @param {string} thingId
+ * @returns {boolean}
+ */
+const userHasThing = async (user, thingObjectId) => {
+    return user.things.includes(thingObjectId);
+}
 
 /**
  * Get thing based on thingId
@@ -13,6 +24,9 @@ module.exports.get = async (req, res) => {
         const thing = await thingModel.findOne({ thingId: req.params.thingId });
         if (!thing) throw new ThingError("Thing not found");
 
+        if (!(await userHasThing(req.user, thing._id)))
+            throw new AuthError("User does not have this thing");
+
         return res.status(200).json({
             thing: {
                 thingId: thing.thingId,
@@ -22,6 +36,11 @@ module.exports.get = async (req, res) => {
     } catch (err) {
         if (err.name == "ThingError")
             return res.status(404).json({
+                error: err.message,
+            });
+
+        if (err.name == "AuthError")
+            return res.status(err.code).json({
                 error: err.message,
             });
 
@@ -42,7 +61,7 @@ module.exports.getAll = async (req, res) => {
         const things = await thingModel.find({
             _id: { $in: req.user.things },
         });
-        
+
         return res.status(200).json({
             things: things.map(thing => ({
                 thingId: thing.thingId,
@@ -55,6 +74,13 @@ module.exports.getAll = async (req, res) => {
         });
     }
 }
+
+/**
+ * Edit thing
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ */
+
 
 /**
  * @param {import('express').Request} req
