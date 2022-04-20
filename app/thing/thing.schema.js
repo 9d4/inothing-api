@@ -14,6 +14,11 @@ const thingSchema = module.exports = new mongoose.Schema({
 });
 
 thingSchema.pre("save", async function (next) {
+    if (this.thingId !== undefined && this.thingId != "") {
+        next();
+        return;
+    }
+
     let thingId = "";
     let thing = null;
 
