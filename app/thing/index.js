@@ -3,19 +3,13 @@
  * other part of the Application access anything related to the Thing from here
  */
 
-const controller = require('./thing.controller');
-const error = require('./thing.errors');
-const model = require('./thing.model');
-const schema = require('./thing.schema');
-const validator = require('./thing.validator');
+const Controller = require('./thing.controller');
+const Error = require('./thing.errors');
+const Model = require('./thing.model');
+const Schema = require('./thing.schema');
+const Validator = require('./thing.validator');
 
-const thing = {
-    Controller: controller,
-    Error: error,
-    Model: model,
-    Schema: schema,
-    Validator: validator,
-}
+const thing = { Controller, Error, Model, Schema, Validator }
 
 module.exports = thing;
 module.exports.default = thing;
