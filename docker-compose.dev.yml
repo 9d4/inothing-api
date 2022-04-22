@@ -1,0 +1,38 @@
+version: '3'
+services:
+  app-dev:
+    build: .
+    ports:
+      - "9100:9100"
+    networks:
+      - net-dev
+    environment:
+      - MONGO_URI=mongodb://mongo-dev:27017/inothing
+      - JWT_SECRET=${JWT_SECRET}
+      - RABBITMQ_SERVER=${RABBITMQ_SERVER}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_VHOST=${RABBITMQ_VHOST}
+    depends_on:
+      - mongo-dev
+    command: pm2-runtime --raw --watch app.js
+    volumes:
+      - .:/web:rw
+    restart: always
+
+  mongo-dev:
+    image: mongo
+    ports:
+      - "27018:27017"
+    networks:
+      - net-dev
+    volumes:
+      - mongodb-dev:/data/db:rw
+
+
+networks:
+  net-dev:
+    driver: bridge
+
+volumes:
+  mongodb-dev:

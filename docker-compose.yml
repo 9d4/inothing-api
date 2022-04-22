@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: inothing-api_app
+    ports:
+      - "9100:9100"
+    networks:
+      - net
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/inothing
+      - JWT_SECRET=${JWT_SECRET}
+      - RABBITMQ_SERVER=${RABBITMQ_SERVER}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_VHOST=${RABBITMQ_VHOST}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: inothing-api_mongo
+    ports:
+      - "27018:27017"
+    networks:
+      - net
+    volumes:
+      - mongodb:/data/db:rw
+
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  mongodb:
