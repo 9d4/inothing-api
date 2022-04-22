@@ -29,6 +29,15 @@ services:
     volumes:
       - mongodb-dev:/data/db:rw
 
+  mongo-gui:
+    image: ugleiton/mongo-gui
+    restart: always
+    ports:
+      - "4321:4321"
+    networks:
+      - net-dev
+    environment:
+      MONGO_URL: "mongodb://mongo-dev:27017/"
 
 networks:
   net-dev:
