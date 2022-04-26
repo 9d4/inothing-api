@@ -15,6 +15,69 @@ const userHasThing = async (user, thingObjectId) => {
 }
 
 /**
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
+module.exports.create = async (req, res, next) => {
+    try {
+        const { value, error } = createThingValidator.validate(req.body);
+        if (error) throw error;
+
+        const thing = await thingModel.create(value);
+
+        // add thing to current user
+        req.user.things.push(thing._id);
+        await req.user.save();
+
+        return res.status(201).json({
+            thing: {
+                thingId: thing.thingId,
+                name: thing.name,
+            }
+        });
+    } catch (err) {
+        if (err.name = "ValidationError") {
+            return res.status(422).json(formatValidationError(err));
+        }
+
+        if (err.name == "MongoServerError" && err.code == 11000)
+            return res.status(409).json({
+                error: formatMongoDuplicateError(err),
+            });
+
+        res.status(400).json({
+            error: "Unkwon error",
+        });
+    }
+}
+
+/**
+ * Get things
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ */
+module.exports.getAll = async (req, res) => {
+    try {
+        // get all things with objectId from req.user.things
+        const things = await thingModel.find({
+            _id: { $in: req.user.things },
+        });
+
+        return res.status(200).json({
+            things: things.map(thing => ({
+                thingId: thing.thingId,
+                name: thing.name,
+            })),
+        });
+    } catch (err) {
+        res.status(400).json({
+            error: "Unkwon error",
+        });
+    }
+}
+
+/**
  * Get thing based on thingId
  * @param {import('express').Request} req
  * @param {import('express').Response} res
@@ -44,31 +107,6 @@ module.exports.get = async (req, res) => {
                 error: err.message,
             });
 
-        res.status(400).json({
-            error: "Unkwon error",
-        });
-    }
-}
-
-/**
- * Get things
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- */
-module.exports.getAll = async (req, res) => {
-    try {
-        // get all things with objectId from req.user.things
-        const things = await thingModel.find({
-            _id: { $in: req.user.things },
-        });
-
-        return res.status(200).json({
-            things: things.map(thing => ({
-                thingId: thing.thingId,
-                name: thing.name,
-            })),
-        });
-    } catch (err) {
         res.status(400).json({
             error: "Unkwon error",
         });
@@ -121,44 +159,6 @@ module.exports.update = async (req, res) => {
 
         res.status(400).json({
             error: "Unknown error",
-        });
-    }
-}
-
-/**
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
-module.exports.create = async (req, res, next) => {
-    try {
-        const { value, error } = createThingValidator.validate(req.body);
-        if (error) throw error;
-
-        const thing = await thingModel.create(value);
-
-        // add thing to current user
-        req.user.things.push(thing._id);
-        await req.user.save();
-
-        return res.status(201).json({
-            thing: {
-                thingId: thing.thingId,
-                name: thing.name,
-            }
-        });
-    } catch (err) {
-        if (err.name = "ValidationError") {
-            return res.status(422).json(formatValidationError(err));
-        }
-
-        if (err.name == "MongoServerError" && err.code == 11000)
-            return res.status(409).json({
-                error: formatMongoDuplicateError(err),
-            });
-
-        res.status(400).json({
-            error: "Unkwon error",
         });
     }
 }
