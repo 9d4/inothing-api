@@ -47,7 +47,7 @@ module.exports.create = async (req, res, next) => {
             });
 
         res.status(400).json({
-            error: "Unkwon error",
+            error: "Unknown error",
         });
     }
 }
@@ -72,7 +72,7 @@ module.exports.getAll = async (req, res) => {
         });
     } catch (err) {
         res.status(400).json({
-            error: "Unkwon error",
+            error: "Unknown error",
         });
     }
 }
@@ -108,7 +108,7 @@ module.exports.get = async (req, res) => {
             });
 
         res.status(400).json({
-            error: "Unkwon error",
+            error: "Unknown error",
         });
     }
 }
@@ -162,3 +162,39 @@ module.exports.update = async (req, res) => {
         });
     }
 }
+
+/**
+ * Delete thing
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ */
+module.exports.delete = async (req, res) => {
+    try {
+        const thing = await thingModel.findOne({ thingId: req.params.thingId });
+        if (!thing) throw new ThingError("Thing not found");
+
+        if (!(await userHasThing(req.user, thing._id)))
+            throw new AuthError("User does not have this thing");
+
+        await thing.remove();
+
+        return res.status(200).json({
+            message: "Thing deleted",
+        });
+    } catch (err) {
+        if (err.name == "ThingError")
+            return res.status(404).json({
+                error: err.message,
+            });
+
+        if (err.name == "AuthError")
+            return res.status(err.code).json({
+                error: err.message,
+            });
+
+        res.status(400).json({
+            error: "Unknown error",
+        });
+    }
+}
+
