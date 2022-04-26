@@ -1,4 +1,6 @@
+const fs = require("fs");
 const express = require("express");
+const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const { getUser } = require("./app/shared/middlewares");
@@ -7,6 +9,9 @@ const app = module.exports = express();
 const port = process.env.PORT || 9100;
 const mongouri = process.env.MONGO_URI;
 
+const accessLogStream = fs.createWriteStream("./logs/access.log", { flags: "a" });
+
+app.use(morgan("combined", { stream: accessLogStream }));
 app.use(express.json());
 app.use((req, res, next) => {
     if (
@@ -28,4 +33,4 @@ const server = mongoose.connect(mongouri).then(() => {
     });
 });
 
-module.exports = {app, server};
+module.exports = { app, server };
